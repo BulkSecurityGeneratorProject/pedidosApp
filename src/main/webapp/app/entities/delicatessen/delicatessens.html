@@ -1,0 +1,68 @@
+<div>
+    <h2 translate="pedidosApp.delicatessen.home.title">Delicatessens</h2>
+    <jhi-alert></jhi-alert>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-xs-4 no-padding-left">
+                <button class="btn btn-primary" ui-sref="delicatessen.new" >
+                    <span class="glyphicon glyphicon-plus"></span>
+                    <span  translate="pedidosApp.delicatessen.home.createLabel">
+                        Create new Delicatessen
+                    </span>
+                </button>
+            </div>
+        </div>
+    </div>
+    <br/>
+    <div class="table-responsive">
+        <table class="jh-table table table-striped">
+            <thead>
+                <tr>
+                    <th><span translate="global.field.id">ID</span></th>
+                    <th><span translate="pedidosApp.delicatessen.name">Name</span></th>
+                    <th><span translate="pedidosApp.delicatessen.address">Address</span></th>
+                    <th><span translate="pedidosApp.delicatessen.phone">Phone</span></th>
+                    <th><span translate="pedidosApp.delicatessen.email">Email</span></th>
+                    <th><span translate="pedidosApp.delicatessen.custom">Custom</span></th>
+                    <th><span translate="pedidosApp.delicatessen.userGroupId">User Group Id</span></th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="delicatessen in vm.delicatessens track by delicatessen.id">
+                    <td><a ui-sref="delicatessen-detail({id:delicatessen.id})">{{delicatessen.id}}</a></td>
+                    <td>{{delicatessen.name}}</td>
+                    <td>{{delicatessen.address}}</td>
+                    <td>{{delicatessen.phone}}</td>
+                    <td>{{delicatessen.email}}</td>
+                    <td>{{delicatessen.custom}}</td>
+                    <td>
+                        <a ui-sref="user-group-detail({id:delicatessen.userGroupId.id})">{{delicatessen.userGroupId.id}}</a>
+                    </td>
+                    <td class="text-right">
+                        <div class="btn-group flex-btn-group-container">
+                            <button type="submit"
+                                    ui-sref="delicatessen-detail({id:delicatessen.id})"
+                                    class="btn btn-info btn-sm">
+                                <span class="glyphicon glyphicon-eye-open"></span>
+                                <span class="hidden-xs hidden-sm" translate="entity.action.view"></span>
+                            </button>
+                            <button type="submit"
+                                    ui-sref="delicatessen.edit({id:delicatessen.id})"
+                                    class="btn btn-primary btn-sm">
+                                <span class="glyphicon glyphicon-pencil"></span>
+                                <span class="hidden-xs hidden-sm" translate="entity.action.edit"></span>
+                            </button>
+                            <button type="submit"
+                                    ui-sref="delicatessen.delete({id:delicatessen.id})"
+                                    class="btn btn-danger btn-sm">
+                                <span class="glyphicon glyphicon-remove-circle"></span>
+                                <span class="hidden-xs hidden-sm" translate="entity.action.delete"></span>
+                            </button>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

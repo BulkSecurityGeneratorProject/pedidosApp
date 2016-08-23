@@ -1,0 +1,27 @@
+{
+    "pedidosApp": {
+        "delicatessen" : {
+            "home": {
+                "title": "Delicatessens",
+                "createLabel": "Create a new Delicatessen",
+                "createOrEditLabel": "Create or edit a Delicatessen",
+                "search": "Search for Delicatessen"
+            },
+            "created": "A new Delicatessen is created with identifier {{ param }}",
+            "updated": "A Delicatessen is updated with identifier {{ param }}",
+            "deleted": "A Delicatessen is deleted with identifier {{ param }}",
+            "delete": {
+                "question": "Are you sure you want to delete Delicatessen {{ id }}?"
+            },
+            "detail": {
+                "title": "Delicatessen"
+            },
+            "name": "Name",
+            "address": "Address",
+            "phone": "Phone",
+            "email": "Email",
+            "custom": "Custom",
+            "userGroupId": "User Group Id"
+        }
+    }
+}

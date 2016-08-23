@@ -1,0 +1,27 @@
+{
+    "pedidosApp": {
+        "delicatessen" : {
+            "home": {
+                "title": "Delicatessens",
+                "createLabel": "Crear nuevo Delicatessen",
+                "createOrEditLabel": "Crear o editar Delicatessen",
+                "search": "Search for Delicatessen"
+            },
+            "created": "Un nuevo Delicatessen ha sido creado con el identificador {{ param }}",
+            "updated": "Un Delicatessen ha sido actualizado con el identificador {{ param }}",
+            "deleted": "Un Delicatessen ha sido eliminado con el identificador {{ param }}",
+            "delete": {
+                "question": "¿Seguro que quiere eliminar Delicatessen {{ id }}?"
+            },
+            "detail": {
+                "title": "Delicatessen"
+            },
+            "name": "Name",
+            "address": "Address",
+            "phone": "Phone",
+            "email": "Email",
+            "custom": "Custom",
+            "userGroupId": "User Group Id"
+        }
+    }
+}

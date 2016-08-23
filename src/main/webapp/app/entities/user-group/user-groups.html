@@ -1,0 +1,66 @@
+<div>
+    <h2 translate="pedidosApp.userGroup.home.title">User Groups</h2>
+    <jhi-alert></jhi-alert>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-xs-4 no-padding-left">
+                <button class="btn btn-primary" ui-sref="user-group.new" >
+                    <span class="glyphicon glyphicon-plus"></span>
+                    <span  translate="pedidosApp.userGroup.home.createLabel">
+                        Create new User Group
+                    </span>
+                </button>
+            </div>
+        </div>
+    </div>
+    <br/>
+    <div class="table-responsive">
+        <table class="jh-table table table-striped">
+            <thead>
+                <tr>
+                    <th><span translate="global.field.id">ID</span></th>
+                    <th><span translate="pedidosApp.userGroup.name">Name</span></th>
+                    <th><span translate="pedidosApp.userGroup.email">Email</span></th>
+                    <th><span translate="pedidosApp.userGroup.address">Address</span></th>
+                    <th><span translate="pedidosApp.userGroup.phone">Phone</span></th>
+                    <th><span translate="pedidosApp.userGroup.adminId">Admin Id</span></th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="userGroup in vm.userGroups track by userGroup.id">
+                    <td><a ui-sref="user-group-detail({id:userGroup.id})">{{userGroup.id}}</a></td>
+                    <td>{{userGroup.name}}</td>
+                    <td>{{userGroup.email}}</td>
+                    <td>{{userGroup.address}}</td>
+                    <td>{{userGroup.phone}}</td>
+                    <td>
+                        {{userGroup.adminId.id}}
+                    </td>
+                    <td class="text-right">
+                        <div class="btn-group flex-btn-group-container">
+                            <button type="submit"
+                                    ui-sref="user-group-detail({id:userGroup.id})"
+                                    class="btn btn-info btn-sm">
+                                <span class="glyphicon glyphicon-eye-open"></span>
+                                <span class="hidden-xs hidden-sm" translate="entity.action.view"></span>
+                            </button>
+                            <button type="submit"
+                                    ui-sref="user-group.edit({id:userGroup.id})"
+                                    class="btn btn-primary btn-sm">
+                                <span class="glyphicon glyphicon-pencil"></span>
+                                <span class="hidden-xs hidden-sm" translate="entity.action.edit"></span>
+                            </button>
+                            <button type="submit"
+                                    ui-sref="user-group.delete({id:userGroup.id})"
+                                    class="btn btn-danger btn-sm">
+                                <span class="glyphicon glyphicon-remove-circle"></span>
+                                <span class="hidden-xs hidden-sm" translate="entity.action.delete"></span>
+                            </button>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

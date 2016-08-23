@@ -1,0 +1,23 @@
+{
+    "pedidosApp": {
+        "garrison" : {
+            "home": {
+                "title": "Garrisons",
+                "createLabel": "Create a new Garrison",
+                "createOrEditLabel": "Create or edit a Garrison",
+                "search": "Search for Garrison"
+            },
+            "created": "A new Garrison is created with identifier {{ param }}",
+            "updated": "A Garrison is updated with identifier {{ param }}",
+            "deleted": "A Garrison is deleted with identifier {{ param }}",
+            "delete": {
+                "question": "Are you sure you want to delete Garrison {{ id }}?"
+            },
+            "detail": {
+                "title": "Garrison"
+            },
+            "name": "Name",
+            "delicatessenId": "Delicatessen Id"
+        }
+    }
+}

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
+    <!--
+        Added the constraints for entity UserOrder.
+    -->
+    <changeSet id="20160823000634-2" author="jhipster">
+        
+        <addForeignKeyConstraint baseColumnNames="user_id_id"
+                                 baseTableName="user_order"
+                                 constraintName="fk_user_order_user_id_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="jhi_user"/>
+
+        <addForeignKeyConstraint baseColumnNames="food_id_id"
+                                 baseTableName="user_order"
+                                 constraintName="fk_user_order_food_id_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="food"/>
+
+        <addForeignKeyConstraint baseColumnNames="garrison_id_id"
+                                 baseTableName="user_order"
+                                 constraintName="fk_user_order_garrison_id_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="garrison"/>
+
+    </changeSet>
+</databaseChangeLog>

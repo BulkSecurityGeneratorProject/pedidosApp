@@ -1,0 +1,25 @@
+{
+    "pedidosApp": {
+        "userOrder" : {
+            "home": {
+                "title": "User Orders",
+                "createLabel": "Create a new User Order",
+                "createOrEditLabel": "Create or edit a User Order",
+                "search": "Search for User Order"
+            },
+            "created": "A new User Order is created with identifier {{ param }}",
+            "updated": "A User Order is updated with identifier {{ param }}",
+            "deleted": "A User Order is deleted with identifier {{ param }}",
+            "delete": {
+                "question": "Are you sure you want to delete User Order {{ id }}?"
+            },
+            "detail": {
+                "title": "User Order"
+            },
+            "date": "Date",
+            "userId": "User Id",
+            "foodId": "Food Id",
+            "garrisonId": "Garrison Id"
+        }
+    }
+}

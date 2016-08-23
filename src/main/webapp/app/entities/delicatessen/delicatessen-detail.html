@@ -1,0 +1,43 @@
+
+<div>
+    <h2><span translate="pedidosApp.delicatessen.detail.title">Delicatessen</span> {{vm.delicatessen.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="dl-horizontal jh-entity-details">
+        <dt><span translate="pedidosApp.delicatessen.name">Name</span></dt>
+        <dd>
+            <span>{{vm.delicatessen.name}}</span>
+        </dd>
+        <dt><span translate="pedidosApp.delicatessen.address">Address</span></dt>
+        <dd>
+            <span>{{vm.delicatessen.address}}</span>
+        </dd>
+        <dt><span translate="pedidosApp.delicatessen.phone">Phone</span></dt>
+        <dd>
+            <span>{{vm.delicatessen.phone}}</span>
+        </dd>
+        <dt><span translate="pedidosApp.delicatessen.email">Email</span></dt>
+        <dd>
+            <span>{{vm.delicatessen.email}}</span>
+        </dd>
+        <dt><span translate="pedidosApp.delicatessen.custom">Custom</span></dt>
+        <dd>
+            <span>{{vm.delicatessen.custom}}</span>
+        </dd>
+        <dt><span translate="pedidosApp.delicatessen.userGroupId">User Group Id</span></dt>
+        <dd>
+            <a ui-sref="user-group-detail({id:vm.delicatessen.userGroupId.id})">{{vm.delicatessen.userGroupId.id}}</a>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            ui-sref="{{ vm.previousState }}"
+            class="btn btn-info">
+        <span class="glyphicon glyphicon-arrow-left"></span>&nbsp;<span translate="entity.action.back"> Back</span>
+    </button>
+
+    <button type="button" ui-sref="delicatessen-detail.edit({id:vm.delicatessen.id})" class="btn btn-primary">
+        <span class="glyphicon glyphicon-pencil"></span>
+        <span class="hidden-xs hidden-sm" translate="entity.action.edit"> Edit</span>
+    </button>
+</div>

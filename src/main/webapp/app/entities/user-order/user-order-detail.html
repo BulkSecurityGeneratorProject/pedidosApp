@@ -1,0 +1,35 @@
+
+<div>
+    <h2><span translate="pedidosApp.userOrder.detail.title">User Order</span> {{vm.userOrder.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="dl-horizontal jh-entity-details">
+        <dt><span translate="pedidosApp.userOrder.date">Date</span></dt>
+        <dd>
+            <span>{{vm.userOrder.date | date:'medium'}}</span>
+        </dd>
+        <dt><span translate="pedidosApp.userOrder.userId">User Id</span></dt>
+        <dd>
+            {{vm.userOrder.userId.id}}
+        </dd>
+        <dt><span translate="pedidosApp.userOrder.foodId">Food Id</span></dt>
+        <dd>
+            <a ui-sref="food-detail({id:vm.userOrder.foodId.id})">{{vm.userOrder.foodId.id}}</a>
+        </dd>
+        <dt><span translate="pedidosApp.userOrder.garrisonId">Garrison Id</span></dt>
+        <dd>
+            <a ui-sref="garrison-detail({id:vm.userOrder.garrisonId.id})">{{vm.userOrder.garrisonId.id}}</a>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            ui-sref="{{ vm.previousState }}"
+            class="btn btn-info">
+        <span class="glyphicon glyphicon-arrow-left"></span>&nbsp;<span translate="entity.action.back"> Back</span>
+    </button>
+
+    <button type="button" ui-sref="user-order-detail.edit({id:vm.userOrder.id})" class="btn btn-primary">
+        <span class="glyphicon glyphicon-pencil"></span>
+        <span class="hidden-xs hidden-sm" translate="entity.action.edit"> Edit</span>
+    </button>
+</div>

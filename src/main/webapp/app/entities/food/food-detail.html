@@ -1,0 +1,37 @@
+
+<div>
+    <h2><span translate="pedidosApp.food.detail.title">Food</span> {{vm.food.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="dl-horizontal jh-entity-details">
+        <dt><span translate="pedidosApp.food.prefix">Prefix</span></dt>
+        <dd>
+            <span>{{vm.food.prefix}}</span>
+        </dd>
+        <dt><span translate="pedidosApp.food.name">Name</span></dt>
+        <dd>
+            <span>{{vm.food.name}}</span>
+        </dd>
+        <dt><span translate="pedidosApp.food.delicatessenId">Delicatessen Id</span></dt>
+        <dd>
+            <a ui-sref="delicatessen-detail({id:vm.food.delicatessenId.id})">{{vm.food.delicatessenId.id}}</a>
+        </dd>
+        <dt><span translate="pedidosApp.food.garrison">Garrison</span></dt>
+        <dd>
+            <span ng-repeat="garrison in vm.food.garrisons">
+                <a ui-sref="garrison-detail({id: garrison.id})">{{garrison.id}}</a>{{$last ? '' : ', '}}
+            </span>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            ui-sref="{{ vm.previousState }}"
+            class="btn btn-info">
+        <span class="glyphicon glyphicon-arrow-left"></span>&nbsp;<span translate="entity.action.back"> Back</span>
+    </button>
+
+    <button type="button" ui-sref="food-detail.edit({id:vm.food.id})" class="btn btn-primary">
+        <span class="glyphicon glyphicon-pencil"></span>
+        <span class="hidden-xs hidden-sm" translate="entity.action.edit"> Edit</span>
+    </button>
+</div>

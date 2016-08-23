@@ -1,0 +1,54 @@
+
+<form name="editForm" role="form" novalidate ng-submit="vm.save()">
+
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                ng-click="vm.clear()">&times;</button>
+        <h4 class="modal-title" id="myUserOrderLabel" translate="pedidosApp.userOrder.home.createOrEditLabel">Create or edit a User Order</h4>
+    </div>
+    <div class="modal-body">
+        <jhi-alert-error></jhi-alert-error>
+        <div class="form-group" ng-show="vm.userOrder.id">
+            <label for="id" translate="global.field.id">ID</label>
+            <input type="text" class="form-control" id="id" name="id"
+                    ng-model="vm.userOrder.id" readonly />
+        </div>
+        <div class="form-group">
+            <label class="control-label" translate="pedidosApp.userOrder.date" for="field_date">Date</label>
+                <div class="input-group">
+                    <input id="field_date" type="text" class="form-control" name="date" datetime-picker="{{dateformat}}" ng-model="vm.userOrder.date" is-open="vm.datePickerOpenStatus.date"
+                      />
+                    <span class="input-group-btn">
+                        <button type="button" class="btn btn-default" ng-click="vm.openCalendar('date')"><i class="glyphicon glyphicon-calendar"></i></button>
+                    </span>
+                </div>
+        </div>
+
+        <div class="form-group">
+            <label translate="pedidosApp.userOrder.userId" for="field_userId">User Id</label>
+            <select class="form-control" id="field_userId" name="userId" ng-model="vm.userOrder.userId" ng-options="user as user.id for user in vm.users track by user.id">
+                <option value=""></option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label translate="pedidosApp.userOrder.foodId" for="field_foodId">Food Id</label>
+            <select class="form-control" id="field_foodId" name="foodId" ng-model="vm.userOrder.foodId" ng-options="food as food.id for food in vm.foods track by food.id">
+                <option value=""></option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label translate="pedidosApp.userOrder.garrisonId" for="field_garrisonId">Garrison Id</label>
+            <select class="form-control" id="field_garrisonId" name="garrisonId" ng-model="vm.userOrder.garrisonId" ng-options="garrison as garrison.id for garrison in vm.garrisons track by garrison.id">
+                <option value=""></option>
+            </select>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="vm.clear()">
+            <span class="glyphicon glyphicon-ban-circle"></span>&nbsp;<span translate="entity.action.cancel">Cancel</span>
+        </button>
+        <button type="submit" ng-disabled="editForm.$invalid || vm.isSaving" class="btn btn-primary">
+            <span class="glyphicon glyphicon-save"></span>&nbsp;<span translate="entity.action.save">Save</span>
+        </button>
+    </div>
+</form>

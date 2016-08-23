@@ -1,0 +1,39 @@
+
+<div>
+    <h2><span translate="pedidosApp.userGroup.detail.title">User Group</span> {{vm.userGroup.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="dl-horizontal jh-entity-details">
+        <dt><span translate="pedidosApp.userGroup.name">Name</span></dt>
+        <dd>
+            <span>{{vm.userGroup.name}}</span>
+        </dd>
+        <dt><span translate="pedidosApp.userGroup.email">Email</span></dt>
+        <dd>
+            <span>{{vm.userGroup.email}}</span>
+        </dd>
+        <dt><span translate="pedidosApp.userGroup.address">Address</span></dt>
+        <dd>
+            <span>{{vm.userGroup.address}}</span>
+        </dd>
+        <dt><span translate="pedidosApp.userGroup.phone">Phone</span></dt>
+        <dd>
+            <span>{{vm.userGroup.phone}}</span>
+        </dd>
+        <dt><span translate="pedidosApp.userGroup.adminId">Admin Id</span></dt>
+        <dd>
+            {{vm.userGroup.adminId.id}}
+        </dd>
+    </dl>
+
+    <button type="submit"
+            ui-sref="{{ vm.previousState }}"
+            class="btn btn-info">
+        <span class="glyphicon glyphicon-arrow-left"></span>&nbsp;<span translate="entity.action.back"> Back</span>
+    </button>
+
+    <button type="button" ui-sref="user-group-detail.edit({id:vm.userGroup.id})" class="btn btn-primary">
+        <span class="glyphicon glyphicon-pencil"></span>
+        <span class="hidden-xs hidden-sm" translate="entity.action.edit"> Edit</span>
+    </button>
+</div>

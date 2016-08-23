@@ -1,0 +1,68 @@
+<div>
+    <h2 translate="pedidosApp.userOrder.home.title">User Orders</h2>
+    <jhi-alert></jhi-alert>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-xs-4 no-padding-left">
+                <button class="btn btn-primary" ui-sref="user-order.new" >
+                    <span class="glyphicon glyphicon-plus"></span>
+                    <span  translate="pedidosApp.userOrder.home.createLabel">
+                        Create new User Order
+                    </span>
+                </button>
+            </div>
+        </div>
+    </div>
+    <br/>
+    <div class="table-responsive">
+        <table class="jh-table table table-striped">
+            <thead>
+                <tr>
+                    <th><span translate="global.field.id">ID</span></th>
+                    <th><span translate="pedidosApp.userOrder.date">Date</span></th>
+                    <th><span translate="pedidosApp.userOrder.userId">User Id</span></th>
+                    <th><span translate="pedidosApp.userOrder.foodId">Food Id</span></th>
+                    <th><span translate="pedidosApp.userOrder.garrisonId">Garrison Id</span></th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="userOrder in vm.userOrders track by userOrder.id">
+                    <td><a ui-sref="user-order-detail({id:userOrder.id})">{{userOrder.id}}</a></td>
+                    <td>{{userOrder.date | date:'medium'}}</td>
+                    <td>
+                        {{userOrder.userId.id}}
+                    </td>
+                    <td>
+                        <a ui-sref="food-detail({id:userOrder.foodId.id})">{{userOrder.foodId.id}}</a>
+                    </td>
+                    <td>
+                        <a ui-sref="garrison-detail({id:userOrder.garrisonId.id})">{{userOrder.garrisonId.id}}</a>
+                    </td>
+                    <td class="text-right">
+                        <div class="btn-group flex-btn-group-container">
+                            <button type="submit"
+                                    ui-sref="user-order-detail({id:userOrder.id})"
+                                    class="btn btn-info btn-sm">
+                                <span class="glyphicon glyphicon-eye-open"></span>
+                                <span class="hidden-xs hidden-sm" translate="entity.action.view"></span>
+                            </button>
+                            <button type="submit"
+                                    ui-sref="user-order.edit({id:userOrder.id})"
+                                    class="btn btn-primary btn-sm">
+                                <span class="glyphicon glyphicon-pencil"></span>
+                                <span class="hidden-xs hidden-sm" translate="entity.action.edit"></span>
+                            </button>
+                            <button type="submit"
+                                    ui-sref="user-order.delete({id:userOrder.id})"
+                                    class="btn btn-danger btn-sm">
+                                <span class="glyphicon glyphicon-remove-circle"></span>
+                                <span class="hidden-xs hidden-sm" translate="entity.action.delete"></span>
+                            </button>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

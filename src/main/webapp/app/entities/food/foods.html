@@ -1,0 +1,68 @@
+<div>
+    <h2 translate="pedidosApp.food.home.title">Foods</h2>
+    <jhi-alert></jhi-alert>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-xs-4 no-padding-left">
+                <button class="btn btn-primary" ui-sref="food.new" >
+                    <span class="glyphicon glyphicon-plus"></span>
+                    <span  translate="pedidosApp.food.home.createLabel">
+                        Create new Food
+                    </span>
+                </button>
+            </div>
+        </div>
+    </div>
+    <br/>
+    <div class="table-responsive">
+        <table class="jh-table table table-striped">
+            <thead>
+                <tr>
+                    <th><span translate="global.field.id">ID</span></th>
+                    <th><span translate="pedidosApp.food.prefix">Prefix</span></th>
+                    <th><span translate="pedidosApp.food.name">Name</span></th>
+                    <th><span translate="pedidosApp.food.delicatessenId">Delicatessen Id</span></th>
+                    <th><span translate="pedidosApp.food.garrison">Garrison</span></th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="food in vm.foods track by food.id">
+                    <td><a ui-sref="food-detail({id:food.id})">{{food.id}}</a></td>
+                    <td>{{food.prefix}}</td>
+                    <td>{{food.name}}</td>
+                    <td>
+                        <a ui-sref="delicatessen-detail({id:food.delicatessenId.id})">{{food.delicatessenId.id}}</a>
+                    </td>
+                    <td>
+                        <span ng-repeat="garrison in food.garrisons">
+                            <a class="form-control-static" ui-sref="garrison-detail({id: garrison.id})">{{garrison.id}}</a>{{$last ? '' : ', '}}
+                        </span>
+                    </td>
+                    <td class="text-right">
+                        <div class="btn-group flex-btn-group-container">
+                            <button type="submit"
+                                    ui-sref="food-detail({id:food.id})"
+                                    class="btn btn-info btn-sm">
+                                <span class="glyphicon glyphicon-eye-open"></span>
+                                <span class="hidden-xs hidden-sm" translate="entity.action.view"></span>
+                            </button>
+                            <button type="submit"
+                                    ui-sref="food.edit({id:food.id})"
+                                    class="btn btn-primary btn-sm">
+                                <span class="glyphicon glyphicon-pencil"></span>
+                                <span class="hidden-xs hidden-sm" translate="entity.action.edit"></span>
+                            </button>
+                            <button type="submit"
+                                    ui-sref="food.delete({id:food.id})"
+                                    class="btn btn-danger btn-sm">
+                                <span class="glyphicon glyphicon-remove-circle"></span>
+                                <span class="hidden-xs hidden-sm" translate="entity.action.delete"></span>
+                            </button>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
