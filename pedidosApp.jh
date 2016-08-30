@@ -1,0 +1,64 @@
+entity User {
+	firstName String required,
+    lastName String required,
+    email String required,
+    photoUrl String,
+    phoneNumber String,
+    password String required
+}
+
+entity UserGroup {
+	name String required,
+    email String required,
+    address String required,
+    phone String required
+}
+
+entity Delicatessen {
+	name String required,
+	address String,
+	phone String required,
+    email String required,
+	custom Boolean required
+}
+
+entity Garrison {
+	name String required
+}
+
+entity Food {
+	prefix String,
+	name String required
+}
+
+entity UserOrder {
+	date ZonedDateTime
+}
+
+//RELATIONSHIPS
+relationship OneToOne {
+	UserGroup{adminId} to User
+}
+
+relationship ManyToOne {
+	Delicatessen{userGroupId} to UserGroup
+}
+
+relationship ManyToOne {
+	Garrison{delicatessenId} to Delicatessen
+}
+
+//TODO review
+relationship ManyToMany {
+	Food{garrison} to Garrison
+}
+
+relationship ManyToOne {
+	Food{delicatessenId} to Delicatessen
+}
+
+relationship ManyToOne {
+	UserOrder{userId} to User,
+    UserOrder{foodId} to Food,
+    UserOrder{garrisonId} to Garrison
+}
