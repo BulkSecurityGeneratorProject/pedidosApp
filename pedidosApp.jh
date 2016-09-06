@@ -2,7 +2,7 @@ entity User {
 	firstName String required,
     lastName String required,
     email String required,
-    photoUrl String,
+    photo ImageBlob,
     phoneNumber String,
     password String required
 }
@@ -35,7 +35,28 @@ entity UserOrder {
 	date ZonedDateTime
 }
 
+entity GroupConfiguration {
+	weekly Boolean,
+    orderOpeningHour Integer max(23) min(0),
+    orderClosingHour Integer max(23) min(0),
+    ccOrderEmail String,
+    ccCancelEmail String,
+    orderEmailBody String,
+    cancelEmailBody String,
+    daysForCancellation Integer,
+    hoursForCancelation Integer max(23) min(0)
+}
+
+entity Day {
+    day String required
+}
+
 //RELATIONSHIPS
+relationship OneToOne {
+	GroupConfiguration{orderOpeningDay} to Day,
+    GroupConfiguration{orderClosingDay} to Day
+}
+
 relationship OneToOne {
 	UserGroup{adminId} to User
 }
@@ -61,4 +82,12 @@ relationship ManyToOne {
 	UserOrder{userId} to User,
     UserOrder{foodId} to Food,
     UserOrder{garrisonId} to Garrison
+}
+
+relationship ManyToMany {
+	GroupConfiguration{orderDays} to Day
+}
+
+relationship OneToOne {
+	UserGroup{configuration} to GroupConfiguration
 }

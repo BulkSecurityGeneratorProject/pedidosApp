@@ -1,0 +1,22 @@
+{
+    "pedidosApp": {
+        "day" : {
+            "home": {
+                "title": "Days",
+                "createLabel": "Crear nuevo Day",
+                "createOrEditLabel": "Crear o editar Day",
+                "search": "Search for Day"
+            },
+            "created": "Un nuevo Day ha sido creado con el identificador {{ param }}",
+            "updated": "Un Day ha sido actualizado con el identificador {{ param }}",
+            "deleted": "Un Day ha sido eliminado con el identificador {{ param }}",
+            "delete": {
+                "question": "¿Seguro que quiere eliminar Day {{ id }}?"
+            },
+            "detail": {
+                "title": "Day"
+            },
+            "day": "Day"
+        }
+    }
+}

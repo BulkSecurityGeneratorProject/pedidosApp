@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
+    <!--
+        Added the constraints for entity GroupConfiguration.
+    -->
+    <changeSet id="20160906013645-2" author="jhipster">
+        
+        <addForeignKeyConstraint baseColumnNames="order_opening_day_id"
+                                 baseTableName="group_configuration"
+                                 constraintName="fk_group_configuration_order_opening_day_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="day"/>
+
+        <addForeignKeyConstraint baseColumnNames="order_closing_day_id"
+                                 baseTableName="group_configuration"
+                                 constraintName="fk_group_configuration_order_closing_day_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="day"/>
+
+        <addForeignKeyConstraint baseColumnNames="group_configurations_id"
+                                 baseTableName="group_configuration_order_days"
+                                 constraintName="fk_group_configuration_order_days_group_configurations_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="group_configuration"/>
+        <addForeignKeyConstraint baseColumnNames="order_days_id"
+                                 baseTableName="group_configuration_order_days"
+                                 constraintName="fk_group_configuration_order_days_order_days_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="day"/>
+        
+    </changeSet>
+</databaseChangeLog>

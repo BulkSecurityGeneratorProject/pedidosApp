@@ -12,6 +12,8 @@
                 "garrison": "Garrison",
                 "food": "Food",
                 "userOrder": "User Order",
+                "groupConfiguration": "Group Configuration",
+                "day": "Day",
                 "jhipster-needle-menu-add-entry": "JHipster will add additional entities here (do not translate!)"
             },
             "account": {

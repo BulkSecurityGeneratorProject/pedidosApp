@@ -1,0 +1,69 @@
+
+<div>
+    <h2><span translate="pedidosApp.groupConfiguration.detail.title">Group Configuration</span> {{vm.groupConfiguration.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="dl-horizontal jh-entity-details">
+        <dt><span translate="pedidosApp.groupConfiguration.weekly">Weekly</span></dt>
+        <dd>
+            <span>{{vm.groupConfiguration.weekly}}</span>
+        </dd>
+        <dt><span translate="pedidosApp.groupConfiguration.orderOpeningHour">Order Opening Hour</span></dt>
+        <dd>
+            <span>{{vm.groupConfiguration.orderOpeningHour}}</span>
+        </dd>
+        <dt><span translate="pedidosApp.groupConfiguration.orderClosingHour">Order Closing Hour</span></dt>
+        <dd>
+            <span>{{vm.groupConfiguration.orderClosingHour}}</span>
+        </dd>
+        <dt><span translate="pedidosApp.groupConfiguration.ccOrderEmail">Cc Order Email</span></dt>
+        <dd>
+            <span>{{vm.groupConfiguration.ccOrderEmail}}</span>
+        </dd>
+        <dt><span translate="pedidosApp.groupConfiguration.ccCancelEmail">Cc Cancel Email</span></dt>
+        <dd>
+            <span>{{vm.groupConfiguration.ccCancelEmail}}</span>
+        </dd>
+        <dt><span translate="pedidosApp.groupConfiguration.orderEmailBody">Order Email Body</span></dt>
+        <dd>
+            <span>{{vm.groupConfiguration.orderEmailBody}}</span>
+        </dd>
+        <dt><span translate="pedidosApp.groupConfiguration.cancelEmailBody">Cancel Email Body</span></dt>
+        <dd>
+            <span>{{vm.groupConfiguration.cancelEmailBody}}</span>
+        </dd>
+        <dt><span translate="pedidosApp.groupConfiguration.daysForCancellation">Days For Cancellation</span></dt>
+        <dd>
+            <span>{{vm.groupConfiguration.daysForCancellation}}</span>
+        </dd>
+        <dt><span translate="pedidosApp.groupConfiguration.hoursForCancelation">Hours For Cancelation</span></dt>
+        <dd>
+            <span>{{vm.groupConfiguration.hoursForCancelation}}</span>
+        </dd>
+        <dt><span translate="pedidosApp.groupConfiguration.orderOpeningDay">Order Opening Day</span></dt>
+        <dd>
+            <a ui-sref="day-detail({id:vm.groupConfiguration.orderOpeningDay.id})">{{vm.groupConfiguration.orderOpeningDay.id}}</a>
+        </dd>
+        <dt><span translate="pedidosApp.groupConfiguration.orderClosingDay">Order Closing Day</span></dt>
+        <dd>
+            <a ui-sref="day-detail({id:vm.groupConfiguration.orderClosingDay.id})">{{vm.groupConfiguration.orderClosingDay.id}}</a>
+        </dd>
+        <dt><span translate="pedidosApp.groupConfiguration.orderDays">Order Days</span></dt>
+        <dd>
+            <span ng-repeat="orderDays in vm.groupConfiguration.orderDays">
+                <a ui-sref="day-detail({id: orderDays.id})">{{orderDays.id}}</a>{{$last ? '' : ', '}}
+            </span>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            ui-sref="{{ vm.previousState }}"
+            class="btn btn-info">
+        <span class="glyphicon glyphicon-arrow-left"></span>&nbsp;<span translate="entity.action.back"> Back</span>
+    </button>
+
+    <button type="button" ui-sref="group-configuration-detail.edit({id:vm.groupConfiguration.id})" class="btn btn-primary">
+        <span class="glyphicon glyphicon-pencil"></span>
+        <span class="hidden-xs hidden-sm" translate="entity.action.edit"> Edit</span>
+    </button>
+</div>

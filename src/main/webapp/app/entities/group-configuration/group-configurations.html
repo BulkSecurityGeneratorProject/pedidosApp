@@ -1,0 +1,86 @@
+<div>
+    <h2 translate="pedidosApp.groupConfiguration.home.title">Group Configurations</h2>
+    <jhi-alert></jhi-alert>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-xs-4 no-padding-left">
+                <button class="btn btn-primary" ui-sref="group-configuration.new" >
+                    <span class="glyphicon glyphicon-plus"></span>
+                    <span  translate="pedidosApp.groupConfiguration.home.createLabel">
+                        Create new Group Configuration
+                    </span>
+                </button>
+            </div>
+        </div>
+    </div>
+    <br/>
+    <div class="table-responsive">
+        <table class="jh-table table table-striped">
+            <thead>
+                <tr>
+                    <th><span translate="global.field.id">ID</span></th>
+                    <th><span translate="pedidosApp.groupConfiguration.weekly">Weekly</span></th>
+                    <th><span translate="pedidosApp.groupConfiguration.orderOpeningHour">Order Opening Hour</span></th>
+                    <th><span translate="pedidosApp.groupConfiguration.orderClosingHour">Order Closing Hour</span></th>
+                    <th><span translate="pedidosApp.groupConfiguration.ccOrderEmail">Cc Order Email</span></th>
+                    <th><span translate="pedidosApp.groupConfiguration.ccCancelEmail">Cc Cancel Email</span></th>
+                    <th><span translate="pedidosApp.groupConfiguration.orderEmailBody">Order Email Body</span></th>
+                    <th><span translate="pedidosApp.groupConfiguration.cancelEmailBody">Cancel Email Body</span></th>
+                    <th><span translate="pedidosApp.groupConfiguration.daysForCancellation">Days For Cancellation</span></th>
+                    <th><span translate="pedidosApp.groupConfiguration.hoursForCancelation">Hours For Cancelation</span></th>
+                    <th><span translate="pedidosApp.groupConfiguration.orderOpeningDay">Order Opening Day</span></th>
+                    <th><span translate="pedidosApp.groupConfiguration.orderClosingDay">Order Closing Day</span></th>
+                    <th><span translate="pedidosApp.groupConfiguration.orderDays">Order Days</span></th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="groupConfiguration in vm.groupConfigurations track by groupConfiguration.id">
+                    <td><a ui-sref="group-configuration-detail({id:groupConfiguration.id})">{{groupConfiguration.id}}</a></td>
+                    <td>{{groupConfiguration.weekly}}</td>
+                    <td>{{groupConfiguration.orderOpeningHour}}</td>
+                    <td>{{groupConfiguration.orderClosingHour}}</td>
+                    <td>{{groupConfiguration.ccOrderEmail}}</td>
+                    <td>{{groupConfiguration.ccCancelEmail}}</td>
+                    <td>{{groupConfiguration.orderEmailBody}}</td>
+                    <td>{{groupConfiguration.cancelEmailBody}}</td>
+                    <td>{{groupConfiguration.daysForCancellation}}</td>
+                    <td>{{groupConfiguration.hoursForCancelation}}</td>
+                    <td>
+                        <a ui-sref="day-detail({id:groupConfiguration.orderOpeningDay.id})">{{groupConfiguration.orderOpeningDay.id}}</a>
+                    </td>
+                    <td>
+                        <a ui-sref="day-detail({id:groupConfiguration.orderClosingDay.id})">{{groupConfiguration.orderClosingDay.id}}</a>
+                    </td>
+                    <td>
+                        <span ng-repeat="orderDays in groupConfiguration.orderDays">
+                            <a class="form-control-static" ui-sref="day-detail({id: orderDays.id})">{{orderDays.id}}</a>{{$last ? '' : ', '}}
+                        </span>
+                    </td>
+                    <td class="text-right">
+                        <div class="btn-group flex-btn-group-container">
+                            <button type="submit"
+                                    ui-sref="group-configuration-detail({id:groupConfiguration.id})"
+                                    class="btn btn-info btn-sm">
+                                <span class="glyphicon glyphicon-eye-open"></span>
+                                <span class="hidden-xs hidden-sm" translate="entity.action.view"></span>
+                            </button>
+                            <button type="submit"
+                                    ui-sref="group-configuration.edit({id:groupConfiguration.id})"
+                                    class="btn btn-primary btn-sm">
+                                <span class="glyphicon glyphicon-pencil"></span>
+                                <span class="hidden-xs hidden-sm" translate="entity.action.edit"></span>
+                            </button>
+                            <button type="submit"
+                                    ui-sref="group-configuration.delete({id:groupConfiguration.id})"
+                                    class="btn btn-danger btn-sm">
+                                <span class="glyphicon glyphicon-remove-circle"></span>
+                                <span class="hidden-xs hidden-sm" translate="entity.action.delete"></span>
+                            </button>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

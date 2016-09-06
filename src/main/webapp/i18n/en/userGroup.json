@@ -20,7 +20,8 @@
             "email": "Email",
             "address": "Address",
             "phone": "Phone",
-            "adminId": "Admin Id"
+            "adminId": "Admin Id",
+            "configuration": "Configuration"
         }
     }
 }

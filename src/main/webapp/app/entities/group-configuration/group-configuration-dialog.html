@@ -1,0 +1,138 @@
+
+<form name="editForm" role="form" novalidate ng-submit="vm.save()" show-validation>
+
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                ng-click="vm.clear()">&times;</button>
+        <h4 class="modal-title" id="myGroupConfigurationLabel" translate="pedidosApp.groupConfiguration.home.createOrEditLabel">Create or edit a Group Configuration</h4>
+    </div>
+    <div class="modal-body">
+        <jhi-alert-error></jhi-alert-error>
+        <div class="form-group" ng-show="vm.groupConfiguration.id">
+            <label for="id" translate="global.field.id">ID</label>
+            <input type="text" class="form-control" id="id" name="id"
+                    ng-model="vm.groupConfiguration.id" readonly />
+        </div>
+        <div class="form-group">
+            <label class="control-label" translate="pedidosApp.groupConfiguration.weekly" for="field_weekly">Weekly</label>
+            <input type="checkbox" class="form-control" name="weekly" id="field_weekly"
+                    ng-model="vm.groupConfiguration.weekly"
+                     />
+        </div>
+        <div class="form-group">
+            <label class="control-label" translate="pedidosApp.groupConfiguration.orderOpeningHour" for="field_orderOpeningHour">Order Opening Hour</label>
+            <input type="number" class="form-control" name="orderOpeningHour" id="field_orderOpeningHour"
+                    ng-model="vm.groupConfiguration.orderOpeningHour"
+                    min="0" max="23" />
+            <div ng-show="editForm.orderOpeningHour.$invalid">
+                <p class="help-block"
+                    ng-show="editForm.orderOpeningHour.$error.min" translate="entity.validation.min" translate-value-min="0">
+                    This field should be more than 0.
+                </p>
+                <p class="help-block"
+                    ng-show="editForm.orderOpeningHour.$error.max" translate="entity.validation.max" translate-value-max="23">
+                    This field cannot be more than 23.
+                </p>
+                <p class="help-block"
+                    ng-show="editForm.orderOpeningHour.$error.number" translate="entity.validation.number">
+                    This field should be a number.
+                </p>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label" translate="pedidosApp.groupConfiguration.orderClosingHour" for="field_orderClosingHour">Order Closing Hour</label>
+            <input type="number" class="form-control" name="orderClosingHour" id="field_orderClosingHour"
+                    ng-model="vm.groupConfiguration.orderClosingHour"
+                    min="0" max="23" />
+            <div ng-show="editForm.orderClosingHour.$invalid">
+                <p class="help-block"
+                    ng-show="editForm.orderClosingHour.$error.min" translate="entity.validation.min" translate-value-min="0">
+                    This field should be more than 0.
+                </p>
+                <p class="help-block"
+                    ng-show="editForm.orderClosingHour.$error.max" translate="entity.validation.max" translate-value-max="23">
+                    This field cannot be more than 23.
+                </p>
+                <p class="help-block"
+                    ng-show="editForm.orderClosingHour.$error.number" translate="entity.validation.number">
+                    This field should be a number.
+                </p>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label" translate="pedidosApp.groupConfiguration.ccOrderEmail" for="field_ccOrderEmail">Cc Order Email</label>
+            <input type="text" class="form-control" name="ccOrderEmail" id="field_ccOrderEmail"
+                    ng-model="vm.groupConfiguration.ccOrderEmail"
+                     />
+        </div>
+        <div class="form-group">
+            <label class="control-label" translate="pedidosApp.groupConfiguration.ccCancelEmail" for="field_ccCancelEmail">Cc Cancel Email</label>
+            <input type="text" class="form-control" name="ccCancelEmail" id="field_ccCancelEmail"
+                    ng-model="vm.groupConfiguration.ccCancelEmail"
+                     />
+        </div>
+        <div class="form-group">
+            <label class="control-label" translate="pedidosApp.groupConfiguration.orderEmailBody" for="field_orderEmailBody">Order Email Body</label>
+            <input type="text" class="form-control" name="orderEmailBody" id="field_orderEmailBody"
+                    ng-model="vm.groupConfiguration.orderEmailBody"
+                     />
+        </div>
+        <div class="form-group">
+            <label class="control-label" translate="pedidosApp.groupConfiguration.cancelEmailBody" for="field_cancelEmailBody">Cancel Email Body</label>
+            <input type="text" class="form-control" name="cancelEmailBody" id="field_cancelEmailBody"
+                    ng-model="vm.groupConfiguration.cancelEmailBody"
+                     />
+        </div>
+        <div class="form-group">
+            <label class="control-label" translate="pedidosApp.groupConfiguration.daysForCancellation" for="field_daysForCancellation">Days For Cancellation</label>
+            <input type="number" class="form-control" name="daysForCancellation" id="field_daysForCancellation"
+                    ng-model="vm.groupConfiguration.daysForCancellation"
+                     />
+        </div>
+        <div class="form-group">
+            <label class="control-label" translate="pedidosApp.groupConfiguration.hoursForCancelation" for="field_hoursForCancelation">Hours For Cancelation</label>
+            <input type="number" class="form-control" name="hoursForCancelation" id="field_hoursForCancelation"
+                    ng-model="vm.groupConfiguration.hoursForCancelation"
+                    min="0" max="23" />
+            <div ng-show="editForm.hoursForCancelation.$invalid">
+                <p class="help-block"
+                    ng-show="editForm.hoursForCancelation.$error.min" translate="entity.validation.min" translate-value-min="0">
+                    This field should be more than 0.
+                </p>
+                <p class="help-block"
+                    ng-show="editForm.hoursForCancelation.$error.max" translate="entity.validation.max" translate-value-max="23">
+                    This field cannot be more than 23.
+                </p>
+                <p class="help-block"
+                    ng-show="editForm.hoursForCancelation.$error.number" translate="entity.validation.number">
+                    This field should be a number.
+                </p>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label translate="pedidosApp.groupConfiguration.orderOpeningDay" for="field_orderOpeningDay">Order Opening Day</label>
+            <select class="form-control" id="field_orderOpeningDay" name="orderOpeningDay" ng-model="vm.groupConfiguration.orderOpeningDay" ng-options="day as day.id for day in vm.orderopeningdays | orderBy:'id' track by day.id">
+                <option value=""></option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label translate="pedidosApp.groupConfiguration.orderClosingDay" for="field_orderClosingDay">Order Closing Day</label>
+            <select class="form-control" id="field_orderClosingDay" name="orderClosingDay" ng-model="vm.groupConfiguration.orderClosingDay" ng-options="day as day.id for day in vm.orderclosingdays | orderBy:'id' track by day.id">
+                <option value=""></option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label translate="pedidosApp.groupConfiguration.orderDays" for="field_orderDays">Order Days</label>
+            <select class="form-control" id="field_orderDays" multiple name="orderDays" ng-model="vm.groupConfiguration.orderDays" ng-options="day as day.id for day in vm.days track by day.id"></select>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="vm.clear()">
+            <span class="glyphicon glyphicon-ban-circle"></span>&nbsp;<span translate="entity.action.cancel">Cancel</span>
+        </button>
+        <button type="submit" ng-disabled="editForm.$invalid || vm.isSaving" class="btn btn-primary">
+            <span class="glyphicon glyphicon-save"></span>&nbsp;<span translate="entity.action.save">Save</span>
+        </button>
+    </div>
+</form>

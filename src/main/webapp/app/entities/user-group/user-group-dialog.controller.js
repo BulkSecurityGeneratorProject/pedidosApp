@@ -5,15 +5,24 @@
         .module('pedidosApp')
         .controller('UserGroupDialogController', UserGroupDialogController);
 
-    UserGroupDialogController.$inject = ['$timeout', '$scope', '$stateParams', '$uibModalInstance', '$q', 'entity', 'UserGroup', 'User'];
+    UserGroupDialogController.$inject = ['$timeout', '$scope', '$stateParams', '$uibModalInstance', '$q', 'entity', 'UserGroup', 'User', 'GroupConfiguration'];
 
-    function UserGroupDialogController ($timeout, $scope, $stateParams, $uibModalInstance, $q, entity, UserGroup, User) {
+    function UserGroupDialogController ($timeout, $scope, $stateParams, $uibModalInstance, $q, entity, UserGroup, User, GroupConfiguration) {
         var vm = this;
 
         vm.userGroup = entity;
         vm.clear = clear;
         vm.save = save;
         vm.users = User.query();
+        vm.configurations = GroupConfiguration.query({filter: 'usergroup-is-null'});
+        $q.all([vm.userGroup.$promise, vm.configurations.$promise]).then(function() {
+            if (!vm.userGroup.configuration || !vm.userGroup.configuration.id) {
+                return $q.reject();
+            }
+            return GroupConfiguration.get({id : vm.userGroup.configuration.id}).$promise;
+        }).then(function(configuration) {
+            vm.configurations.push(configuration);
+        });
 
         $timeout(function (){
             angular.element('.form-group:eq(1)>input').focus();

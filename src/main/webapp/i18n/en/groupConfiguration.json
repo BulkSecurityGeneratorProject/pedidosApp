@@ -1,0 +1,33 @@
+{
+    "pedidosApp": {
+        "groupConfiguration" : {
+            "home": {
+                "title": "Group Configurations",
+                "createLabel": "Create a new Group Configuration",
+                "createOrEditLabel": "Create or edit a Group Configuration",
+                "search": "Search for Group Configuration"
+            },
+            "created": "A new Group Configuration is created with identifier {{ param }}",
+            "updated": "A Group Configuration is updated with identifier {{ param }}",
+            "deleted": "A Group Configuration is deleted with identifier {{ param }}",
+            "delete": {
+                "question": "Are you sure you want to delete Group Configuration {{ id }}?"
+            },
+            "detail": {
+                "title": "Group Configuration"
+            },
+            "weekly": "Weekly",
+            "orderOpeningHour": "Order Opening Hour",
+            "orderClosingHour": "Order Closing Hour",
+            "ccOrderEmail": "Cc Order Email",
+            "ccCancelEmail": "Cc Cancel Email",
+            "orderEmailBody": "Order Email Body",
+            "cancelEmailBody": "Cancel Email Body",
+            "daysForCancellation": "Days For Cancellation",
+            "hoursForCancelation": "Hours For Cancelation",
+            "orderOpeningDay": "Order Opening Day",
+            "orderClosingDay": "Order Closing Day",
+            "orderDays": "Order Days"
+        }
+    }
+}

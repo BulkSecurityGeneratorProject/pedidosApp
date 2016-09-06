@@ -8,6 +8,14 @@
             "otherEntityField": "id",
             "ownerSide": true,
             "otherEntityRelationshipName": "userGroup"
+        },
+        {
+            "relationshipType": "one-to-one",
+            "relationshipName": "configuration",
+            "otherEntityName": "groupConfiguration",
+            "otherEntityField": "id",
+            "ownerSide": true,
+            "otherEntityRelationshipName": "userGroup"
         }
     ],
     "fields": [
@@ -40,7 +48,7 @@
             ]
         }
     ],
-    "changelogDate": "20160823000630",
+    "changelogDate": "20160906013640",
     "entityTableName": "user_group",
     "dto": "no",
     "pagination": "no",

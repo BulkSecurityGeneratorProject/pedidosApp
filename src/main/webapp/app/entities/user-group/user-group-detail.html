@@ -24,6 +24,10 @@
         <dd>
             {{vm.userGroup.adminId.id}}
         </dd>
+        <dt><span translate="pedidosApp.userGroup.configuration">Configuration</span></dt>
+        <dd>
+            <a ui-sref="group-configuration-detail({id:vm.userGroup.configuration.id})">{{vm.userGroup.configuration.id}}</a>
+        </dd>
     </dl>
 
     <button type="submit"

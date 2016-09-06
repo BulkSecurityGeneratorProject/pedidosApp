@@ -42,6 +42,10 @@ public class UserGroup implements Serializable {
     @JoinColumn(unique = true)
     private User adminId;
 
+    @OneToOne
+    @JoinColumn(unique = true)
+    private GroupConfiguration configuration;
+
     public Long getId() {
         return id;
     }
@@ -113,6 +117,19 @@ public class UserGroup implements Serializable {
 
     public void setAdminId(User user) {
         this.adminId = user;
+    }
+
+    public GroupConfiguration getConfiguration() {
+        return configuration;
+    }
+
+    public UserGroup configuration(GroupConfiguration groupConfiguration) {
+        this.configuration = groupConfiguration;
+        return this;
+    }
+
+    public void setConfiguration(GroupConfiguration groupConfiguration) {
+        this.configuration = groupConfiguration;
     }
 
     @Override

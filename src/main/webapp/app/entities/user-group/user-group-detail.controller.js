@@ -5,9 +5,9 @@
         .module('pedidosApp')
         .controller('UserGroupDetailController', UserGroupDetailController);
 
-    UserGroupDetailController.$inject = ['$scope', '$rootScope', '$stateParams', 'previousState', 'entity', 'UserGroup', 'User'];
+    UserGroupDetailController.$inject = ['$scope', '$rootScope', '$stateParams', 'previousState', 'entity', 'UserGroup', 'User', 'GroupConfiguration'];
 
-    function UserGroupDetailController($scope, $rootScope, $stateParams, previousState, entity, UserGroup, User) {
+    function UserGroupDetailController($scope, $rootScope, $stateParams, previousState, entity, UserGroup, User, GroupConfiguration) {
         var vm = this;
 
         vm.userGroup = entity;

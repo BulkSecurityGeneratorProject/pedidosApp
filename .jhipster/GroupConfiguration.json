@@ -1,0 +1,90 @@
+{
+    "fluentMethods": true,
+    "relationships": [
+        {
+            "relationshipType": "one-to-one",
+            "relationshipName": "orderOpeningDay",
+            "otherEntityName": "day",
+            "otherEntityField": "id",
+            "ownerSide": true,
+            "otherEntityRelationshipName": "groupConfiguration"
+        },
+        {
+            "relationshipType": "one-to-one",
+            "relationshipName": "orderClosingDay",
+            "otherEntityName": "day",
+            "otherEntityField": "id",
+            "ownerSide": true,
+            "otherEntityRelationshipName": "groupConfiguration"
+        },
+        {
+            "relationshipType": "many-to-many",
+            "otherEntityRelationshipName": "",
+            "relationshipName": "orderDays",
+            "otherEntityName": "day",
+            "otherEntityField": "id",
+            "ownerSide": true
+        }
+    ],
+    "fields": [
+        {
+            "fieldName": "weekly",
+            "fieldType": "Boolean"
+        },
+        {
+            "fieldName": "orderOpeningHour",
+            "fieldType": "Integer",
+            "fieldValidateRules": [
+                "max",
+                "min"
+            ],
+            "fieldValidateRulesMax": 23,
+            "fieldValidateRulesMin": 0
+        },
+        {
+            "fieldName": "orderClosingHour",
+            "fieldType": "Integer",
+            "fieldValidateRules": [
+                "max",
+                "min"
+            ],
+            "fieldValidateRulesMax": 23,
+            "fieldValidateRulesMin": 0
+        },
+        {
+            "fieldName": "ccOrderEmail",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "ccCancelEmail",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "orderEmailBody",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "cancelEmailBody",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "daysForCancellation",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "hoursForCancelation",
+            "fieldType": "Integer",
+            "fieldValidateRules": [
+                "max",
+                "min"
+            ],
+            "fieldValidateRulesMax": 23,
+            "fieldValidateRulesMin": 0
+        }
+    ],
+    "changelogDate": "20160906013645",
+    "entityTableName": "group_configuration",
+    "dto": "no",
+    "pagination": "no",
+    "service": "no"
+}
