@@ -20,6 +20,7 @@
             "email": "Email",
             "address": "Address",
             "phone": "Phone",
+            "picture": "Picture",
             "adminId": "Admin Id",
             "configuration": "Configuration"
         }

@@ -18,6 +18,7 @@ import org.springframework.test.util.ReflectionTestUtils;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.util.Base64Utils;
 
 import javax.annotation.PostConstruct;
 import javax.inject.Inject;
@@ -44,6 +45,11 @@ public class UserGroupResourceIntTest {
     private static final String UPDATED_ADDRESS = "BBBBB";
     private static final String DEFAULT_PHONE = "AAAAA";
     private static final String UPDATED_PHONE = "BBBBB";
+
+    private static final byte[] DEFAULT_PICTURE = TestUtil.createByteArray(1, "0");
+    private static final byte[] UPDATED_PICTURE = TestUtil.createByteArray(2, "1");
+    private static final String DEFAULT_PICTURE_CONTENT_TYPE = "image/jpg";
+    private static final String UPDATED_PICTURE_CONTENT_TYPE = "image/png";
 
     @Inject
     private UserGroupRepository userGroupRepository;
@@ -83,7 +89,9 @@ public class UserGroupResourceIntTest {
                 .name(DEFAULT_NAME)
                 .email(DEFAULT_EMAIL)
                 .address(DEFAULT_ADDRESS)
-                .phone(DEFAULT_PHONE);
+                .phone(DEFAULT_PHONE)
+                .picture(DEFAULT_PICTURE)
+                .pictureContentType(DEFAULT_PICTURE_CONTENT_TYPE);
         return userGroup;
     }
 
@@ -112,6 +120,8 @@ public class UserGroupResourceIntTest {
         assertThat(testUserGroup.getEmail()).isEqualTo(DEFAULT_EMAIL);
         assertThat(testUserGroup.getAddress()).isEqualTo(DEFAULT_ADDRESS);
         assertThat(testUserGroup.getPhone()).isEqualTo(DEFAULT_PHONE);
+        assertThat(testUserGroup.getPicture()).isEqualTo(DEFAULT_PICTURE);
+        assertThat(testUserGroup.getPictureContentType()).isEqualTo(DEFAULT_PICTURE_CONTENT_TYPE);
     }
 
     @Test
@@ -200,7 +210,9 @@ public class UserGroupResourceIntTest {
                 .andExpect(jsonPath("$.[*].name").value(hasItem(DEFAULT_NAME.toString())))
                 .andExpect(jsonPath("$.[*].email").value(hasItem(DEFAULT_EMAIL.toString())))
                 .andExpect(jsonPath("$.[*].address").value(hasItem(DEFAULT_ADDRESS.toString())))
-                .andExpect(jsonPath("$.[*].phone").value(hasItem(DEFAULT_PHONE.toString())));
+                .andExpect(jsonPath("$.[*].phone").value(hasItem(DEFAULT_PHONE.toString())))
+                .andExpect(jsonPath("$.[*].pictureContentType").value(hasItem(DEFAULT_PICTURE_CONTENT_TYPE)))
+                .andExpect(jsonPath("$.[*].picture").value(hasItem(Base64Utils.encodeToString(DEFAULT_PICTURE))));
     }
 
     @Test
@@ -217,7 +229,9 @@ public class UserGroupResourceIntTest {
             .andExpect(jsonPath("$.name").value(DEFAULT_NAME.toString()))
             .andExpect(jsonPath("$.email").value(DEFAULT_EMAIL.toString()))
             .andExpect(jsonPath("$.address").value(DEFAULT_ADDRESS.toString()))
-            .andExpect(jsonPath("$.phone").value(DEFAULT_PHONE.toString()));
+            .andExpect(jsonPath("$.phone").value(DEFAULT_PHONE.toString()))
+            .andExpect(jsonPath("$.pictureContentType").value(DEFAULT_PICTURE_CONTENT_TYPE))
+            .andExpect(jsonPath("$.picture").value(Base64Utils.encodeToString(DEFAULT_PICTURE)));
     }
 
     @Test
@@ -241,7 +255,9 @@ public class UserGroupResourceIntTest {
                 .name(UPDATED_NAME)
                 .email(UPDATED_EMAIL)
                 .address(UPDATED_ADDRESS)
-                .phone(UPDATED_PHONE);
+                .phone(UPDATED_PHONE)
+                .picture(UPDATED_PICTURE)
+                .pictureContentType(UPDATED_PICTURE_CONTENT_TYPE);
 
         restUserGroupMockMvc.perform(put("/api/user-groups")
                 .contentType(TestUtil.APPLICATION_JSON_UTF8)
@@ -256,6 +272,8 @@ public class UserGroupResourceIntTest {
         assertThat(testUserGroup.getEmail()).isEqualTo(UPDATED_EMAIL);
         assertThat(testUserGroup.getAddress()).isEqualTo(UPDATED_ADDRESS);
         assertThat(testUserGroup.getPhone()).isEqualTo(UPDATED_PHONE);
+        assertThat(testUserGroup.getPicture()).isEqualTo(UPDATED_PICTURE);
+        assertThat(testUserGroup.getPictureContentType()).isEqualTo(UPDATED_PICTURE_CONTENT_TYPE);
     }
 
     @Test

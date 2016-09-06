@@ -1,0 +1,10 @@
+{
+    "pedidosApp": {
+        "OrderStatus" : {
+            "null": "",
+            "PENDING": "PENDING",
+            "ORDERED": "ORDERED",
+            "CANCELLED": "CANCELLED"
+        }
+    }
+}

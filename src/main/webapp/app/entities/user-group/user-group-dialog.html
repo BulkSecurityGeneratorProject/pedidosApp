@@ -61,6 +61,28 @@
                 </p>
             </div>
         </div>
+        <div class="form-group" ngf-drop ngf-change="vm.setPicture($file, vm.userGroup)" ngf-pattern="'image/*'">
+            <label class="control-label" translate="pedidosApp.userGroup.picture" for="field_picture">Picture</label>
+            <div>
+                <img data-ng-src="{{'data:' + vm.userGroup.pictureContentType + ';base64,' + vm.userGroup.picture}}" style="max-height: 100px;" ng-if="vm.userGroup.picture"/>
+                <div ng-if="vm.userGroup.picture" class="help-block clearfix">
+                    <span class="pull-left">{{vm.userGroup.pictureContentType}}, {{vm.byteSize(vm.userGroup.picture)}}</span>
+                    <button ng-click="vm.userGroup.picture=null;vm.userGroup.pictureContentType=null;"
+                            class="btn btn-default btn-xs pull-right">
+                        <span class="glyphicon glyphicon-remove"></span>
+                    </button>
+                </div>
+                <button type="file" ngf-select class="btn btn-default btn-block"
+                        ngf-change="vm.setPicture($file, vm.userGroup)" accept="image/*" translate="entity.action.addimage">
+                    Add image
+                </button>
+            </div>
+            <input type="hidden" class="form-control" name="picture" id="field_picture"
+                    ng-model="vm.userGroup.picture"
+                     />
+            <input type="hidden" class="form-control" name="pictureContentType" id="field_pictureContentType"
+                    ng-model="vm.userGroup.pictureContentType" />
+        </div>
 
         <div class="form-group">
             <label translate="pedidosApp.userGroup.adminId" for="field_adminId">Admin Id</label>

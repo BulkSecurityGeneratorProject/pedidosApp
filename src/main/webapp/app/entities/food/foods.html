@@ -21,6 +21,9 @@
                     <th><span translate="global.field.id">ID</span></th>
                     <th><span translate="pedidosApp.food.prefix">Prefix</span></th>
                     <th><span translate="pedidosApp.food.name">Name</span></th>
+                    <th><span translate="pedidosApp.food.startDate">Start Date</span></th>
+                    <th><span translate="pedidosApp.food.endDate">End Date</span></th>
+                    <th><span translate="pedidosApp.food.picture">Picture</span></th>
                     <th><span translate="pedidosApp.food.delicatessenId">Delicatessen Id</span></th>
                     <th><span translate="pedidosApp.food.garrison">Garrison</span></th>
                     <th></th>
@@ -31,6 +34,14 @@
                     <td><a ui-sref="food-detail({id:food.id})">{{food.id}}</a></td>
                     <td>{{food.prefix}}</td>
                     <td>{{food.name}}</td>
+                    <td>{{food.startDate | date:'medium'}}</td>
+                    <td>{{food.endDate | date:'medium'}}</td>
+                    <td>
+                        <a ng-if="food.picture" ng-click="vm.openFile(food.pictureContentType, food.picture)">
+                            <img data-ng-src="{{'data:' + food.pictureContentType + ';base64,' + food.picture}}" style="max-height: 30px;"/>
+                        </a>
+                        <span ng-if="food.picture">{{food.pictureContentType}}, {{vm.byteSize(food.picture)}}</span>
+                    </td>
                     <td>
                         <a ui-sref="delicatessen-detail({id:food.delicatessenId.id})">{{food.delicatessenId.id}}</a>
                     </td>

@@ -5,13 +5,15 @@
         .module('pedidosApp')
         .controller('UserGroupDialogController', UserGroupDialogController);
 
-    UserGroupDialogController.$inject = ['$timeout', '$scope', '$stateParams', '$uibModalInstance', '$q', 'entity', 'UserGroup', 'User', 'GroupConfiguration'];
+    UserGroupDialogController.$inject = ['$timeout', '$scope', '$stateParams', '$uibModalInstance', '$q', 'DataUtils', 'entity', 'UserGroup', 'User', 'GroupConfiguration'];
 
-    function UserGroupDialogController ($timeout, $scope, $stateParams, $uibModalInstance, $q, entity, UserGroup, User, GroupConfiguration) {
+    function UserGroupDialogController ($timeout, $scope, $stateParams, $uibModalInstance, $q, DataUtils, entity, UserGroup, User, GroupConfiguration) {
         var vm = this;
 
         vm.userGroup = entity;
         vm.clear = clear;
+        vm.byteSize = DataUtils.byteSize;
+        vm.openFile = DataUtils.openFile;
         vm.save = save;
         vm.users = User.query();
         vm.configurations = GroupConfiguration.query({filter: 'usergroup-is-null'});
@@ -51,6 +53,20 @@
             vm.isSaving = false;
         }
 
+
+        vm.setPicture = function ($file, userGroup) {
+            if ($file && $file.$error === 'pattern') {
+                return;
+            }
+            if ($file) {
+                DataUtils.toBase64($file, function(base64Data) {
+                    $scope.$apply(function() {
+                        userGroup.picture = base64Data;
+                        userGroup.pictureContentType = $file.type;
+                    });
+                });
+            }
+        };
 
     }
 })();

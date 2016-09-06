@@ -12,6 +12,23 @@
         <dd>
             <span>{{vm.food.name}}</span>
         </dd>
+        <dt><span translate="pedidosApp.food.startDate">Start Date</span></dt>
+        <dd>
+            <span>{{vm.food.startDate | date:'medium'}}</span>
+        </dd>
+        <dt><span translate="pedidosApp.food.endDate">End Date</span></dt>
+        <dd>
+            <span>{{vm.food.endDate | date:'medium'}}</span>
+        </dd>
+        <dt><span translate="pedidosApp.food.picture">Picture</span></dt>
+        <dd>
+            <div ng-if="vm.food.picture">
+                <a ng-click="vm.openFile(vm.food.pictureContentType, vm.food.picture)">
+                    <img data-ng-src="{{'data:' + vm.food.pictureContentType + ';base64,' + vm.food.picture}}" style="max-width: 100%;"/>
+                </a>
+                {{vm.food.pictureContentType}}, {{vm.byteSize(vm.food.picture)}}
+            </div>
+        </dd>
         <dt><span translate="pedidosApp.food.delicatessenId">Delicatessen Id</span></dt>
         <dd>
             <a ui-sref="delicatessen-detail({id:vm.food.delicatessenId.id})">{{vm.food.delicatessenId.id}}</a>

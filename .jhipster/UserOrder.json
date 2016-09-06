@@ -24,9 +24,14 @@
         {
             "fieldName": "date",
             "fieldType": "ZonedDateTime"
+        },
+        {
+            "fieldName": "status",
+            "fieldType": "OrderStatus",
+            "fieldValues": "PENDING,ORDERED,CANCELLED"
         }
     ],
-    "changelogDate": "20160823000634",
+    "changelogDate": "20160906215430",
     "entityTableName": "user_order",
     "dto": "no",
     "pagination": "no",

@@ -6,6 +6,7 @@ import org.hibernate.annotations.CacheConcurrencyStrategy;
 import javax.persistence.*;
 import javax.validation.constraints.*;
 import java.io.Serializable;
+import java.time.ZonedDateTime;
 import java.util.HashSet;
 import java.util.Set;
 import java.util.Objects;
@@ -30,6 +31,20 @@ public class Food implements Serializable {
     @NotNull
     @Column(name = "name", nullable = false)
     private String name;
+
+    @NotNull
+    @Column(name = "start_date", nullable = false)
+    private ZonedDateTime startDate;
+
+    @Column(name = "end_date")
+    private ZonedDateTime endDate;
+
+    @Lob
+    @Column(name = "picture")
+    private byte[] picture;
+
+    @Column(name = "picture_content_type")
+    private String pictureContentType;
 
     @ManyToOne
     private Delicatessen delicatessenId;
@@ -73,6 +88,58 @@ public class Food implements Serializable {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public ZonedDateTime getStartDate() {
+        return startDate;
+    }
+
+    public Food startDate(ZonedDateTime startDate) {
+        this.startDate = startDate;
+        return this;
+    }
+
+    public void setStartDate(ZonedDateTime startDate) {
+        this.startDate = startDate;
+    }
+
+    public ZonedDateTime getEndDate() {
+        return endDate;
+    }
+
+    public Food endDate(ZonedDateTime endDate) {
+        this.endDate = endDate;
+        return this;
+    }
+
+    public void setEndDate(ZonedDateTime endDate) {
+        this.endDate = endDate;
+    }
+
+    public byte[] getPicture() {
+        return picture;
+    }
+
+    public Food picture(byte[] picture) {
+        this.picture = picture;
+        return this;
+    }
+
+    public void setPicture(byte[] picture) {
+        this.picture = picture;
+    }
+
+    public String getPictureContentType() {
+        return pictureContentType;
+    }
+
+    public Food pictureContentType(String pictureContentType) {
+        this.pictureContentType = pictureContentType;
+        return this;
+    }
+
+    public void setPictureContentType(String pictureContentType) {
+        this.pictureContentType = pictureContentType;
     }
 
     public Delicatessen getDelicatessenId() {
@@ -137,6 +204,10 @@ public class Food implements Serializable {
             "id=" + id +
             ", prefix='" + prefix + "'" +
             ", name='" + name + "'" +
+            ", startDate='" + startDate + "'" +
+            ", endDate='" + endDate + "'" +
+            ", picture='" + picture + "'" +
+            ", pictureContentType='" + pictureContentType + "'" +
             '}';
     }
 }

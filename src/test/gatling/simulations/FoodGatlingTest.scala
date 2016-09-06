@@ -67,7 +67,7 @@ class FoodGatlingTest extends Simulation {
             .exec(http("Create new food")
             .post("/api/foods")
             .headers(headers_http_authenticated)
-            .body(StringBody("""{"id":null, "prefix":"SAMPLE_TEXT", "name":"SAMPLE_TEXT"}""")).asJSON
+            .body(StringBody("""{"id":null, "prefix":"SAMPLE_TEXT", "name":"SAMPLE_TEXT", "startDate":"2020-01-01T00:00:00.000Z", "endDate":"2020-01-01T00:00:00.000Z", "picture":null}""")).asJSON
             .check(status.is(201))
             .check(headerRegex("Location", "(.*)").saveAs("new_food_url"))).exitHereIfFailed
             .pause(10)

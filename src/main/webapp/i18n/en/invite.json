@@ -1,0 +1,26 @@
+{
+    "pedidosApp": {
+        "invite" : {
+            "home": {
+                "title": "Invites",
+                "createLabel": "Create a new Invite",
+                "createOrEditLabel": "Create or edit a Invite",
+                "search": "Search for Invite"
+            },
+            "created": "A new Invite is created with identifier {{ param }}",
+            "updated": "A Invite is updated with identifier {{ param }}",
+            "deleted": "A Invite is deleted with identifier {{ param }}",
+            "delete": {
+                "question": "Are you sure you want to delete Invite {{ id }}?"
+            },
+            "detail": {
+                "title": "Invite"
+            },
+            "guestMail": "Guest Mail",
+            "guestName": "Guest Name",
+            "date": "Date",
+            "status": "Status",
+            "host": "Host"
+        }
+    }
+}

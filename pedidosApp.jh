@@ -11,7 +11,8 @@ entity UserGroup {
 	name String required,
     email String required,
     address String required,
-    phone String required
+    phone String required,
+    picture ImageBlob
 }
 
 entity Delicatessen {
@@ -28,11 +29,19 @@ entity Garrison {
 
 entity Food {
 	prefix String,
-	name String required
+	name String required,
+    startDate ZonedDateTime required,
+    endDate ZonedDateTime,
+    picture ImageBlob
 }
 
 entity UserOrder {
-	date ZonedDateTime
+	date ZonedDateTime,
+    status OrderStatus
+}
+
+enum OrderStatus {
+	PENDING, ORDERED, CANCELLED
 }
 
 entity GroupConfiguration {
@@ -49,6 +58,17 @@ entity GroupConfiguration {
 
 entity Day {
     day String required
+}
+
+entity Invite {
+	guestMail String required,
+    guestName String,
+    date ZonedDateTime,
+    status InviteStatus
+}
+
+enum InviteStatus {
+	PENDING, SENT, ACCEPTED
 }
 
 //RELATIONSHIPS
@@ -90,4 +110,8 @@ relationship ManyToMany {
 
 relationship OneToOne {
 	UserGroup{configuration} to GroupConfiguration
+}
+
+relationship ManyToOne {
+	Invite{host} to User
 }

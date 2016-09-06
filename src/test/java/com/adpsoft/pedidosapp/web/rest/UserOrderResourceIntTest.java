@@ -32,6 +32,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
+import com.adpsoft.pedidosapp.domain.enumeration.OrderStatus;
 /**
  * Test class for the UserOrderResource REST controller.
  *
@@ -45,6 +46,9 @@ public class UserOrderResourceIntTest {
     private static final ZonedDateTime DEFAULT_DATE = ZonedDateTime.ofInstant(Instant.ofEpochMilli(0L), ZoneId.systemDefault());
     private static final ZonedDateTime UPDATED_DATE = ZonedDateTime.now(ZoneId.systemDefault()).withNano(0);
     private static final String DEFAULT_DATE_STR = dateTimeFormatter.format(DEFAULT_DATE);
+
+    private static final OrderStatus DEFAULT_STATUS = OrderStatus.PENDING;
+    private static final OrderStatus UPDATED_STATUS = OrderStatus.ORDERED;
 
     @Inject
     private UserOrderRepository userOrderRepository;
@@ -81,7 +85,8 @@ public class UserOrderResourceIntTest {
     public static UserOrder createEntity(EntityManager em) {
         UserOrder userOrder = new UserOrder();
         userOrder = new UserOrder()
-                .date(DEFAULT_DATE);
+                .date(DEFAULT_DATE)
+                .status(DEFAULT_STATUS);
         return userOrder;
     }
 
@@ -107,6 +112,7 @@ public class UserOrderResourceIntTest {
         assertThat(userOrders).hasSize(databaseSizeBeforeCreate + 1);
         UserOrder testUserOrder = userOrders.get(userOrders.size() - 1);
         assertThat(testUserOrder.getDate()).isEqualTo(DEFAULT_DATE);
+        assertThat(testUserOrder.getStatus()).isEqualTo(DEFAULT_STATUS);
     }
 
     @Test
@@ -120,7 +126,8 @@ public class UserOrderResourceIntTest {
                 .andExpect(status().isOk())
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
                 .andExpect(jsonPath("$.[*].id").value(hasItem(userOrder.getId().intValue())))
-                .andExpect(jsonPath("$.[*].date").value(hasItem(DEFAULT_DATE_STR)));
+                .andExpect(jsonPath("$.[*].date").value(hasItem(DEFAULT_DATE_STR)))
+                .andExpect(jsonPath("$.[*].status").value(hasItem(DEFAULT_STATUS.toString())));
     }
 
     @Test
@@ -134,7 +141,8 @@ public class UserOrderResourceIntTest {
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
             .andExpect(jsonPath("$.id").value(userOrder.getId().intValue()))
-            .andExpect(jsonPath("$.date").value(DEFAULT_DATE_STR));
+            .andExpect(jsonPath("$.date").value(DEFAULT_DATE_STR))
+            .andExpect(jsonPath("$.status").value(DEFAULT_STATUS.toString()));
     }
 
     @Test
@@ -155,7 +163,8 @@ public class UserOrderResourceIntTest {
         // Update the userOrder
         UserOrder updatedUserOrder = userOrderRepository.findOne(userOrder.getId());
         updatedUserOrder
-                .date(UPDATED_DATE);
+                .date(UPDATED_DATE)
+                .status(UPDATED_STATUS);
 
         restUserOrderMockMvc.perform(put("/api/user-orders")
                 .contentType(TestUtil.APPLICATION_JSON_UTF8)
@@ -167,6 +176,7 @@ public class UserOrderResourceIntTest {
         assertThat(userOrders).hasSize(databaseSizeBeforeUpdate);
         UserOrder testUserOrder = userOrders.get(userOrders.size() - 1);
         assertThat(testUserOrder.getDate()).isEqualTo(UPDATED_DATE);
+        assertThat(testUserOrder.getStatus()).isEqualTo(UPDATED_STATUS);
     }
 
     @Test

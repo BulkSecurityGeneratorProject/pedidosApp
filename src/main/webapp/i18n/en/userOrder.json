@@ -17,6 +17,7 @@
                 "title": "User Order"
             },
             "date": "Date",
+            "status": "Status",
             "userId": "User Id",
             "foodId": "Food Id",
             "garrisonId": "Garrison Id"

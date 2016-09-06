@@ -23,6 +23,7 @@
                     <th><span translate="pedidosApp.userGroup.email">Email</span></th>
                     <th><span translate="pedidosApp.userGroup.address">Address</span></th>
                     <th><span translate="pedidosApp.userGroup.phone">Phone</span></th>
+                    <th><span translate="pedidosApp.userGroup.picture">Picture</span></th>
                     <th><span translate="pedidosApp.userGroup.adminId">Admin Id</span></th>
                     <th><span translate="pedidosApp.userGroup.configuration">Configuration</span></th>
                     <th></th>
@@ -35,6 +36,12 @@
                     <td>{{userGroup.email}}</td>
                     <td>{{userGroup.address}}</td>
                     <td>{{userGroup.phone}}</td>
+                    <td>
+                        <a ng-if="userGroup.picture" ng-click="vm.openFile(userGroup.pictureContentType, userGroup.picture)">
+                            <img data-ng-src="{{'data:' + userGroup.pictureContentType + ';base64,' + userGroup.picture}}" style="max-height: 30px;"/>
+                        </a>
+                        <span ng-if="userGroup.picture">{{userGroup.pictureContentType}}, {{vm.byteSize(userGroup.picture)}}</span>
+                    </td>
                     <td>
                         {{userGroup.adminId.id}}
                     </td>

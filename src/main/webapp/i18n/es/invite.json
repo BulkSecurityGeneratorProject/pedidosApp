@@ -1,0 +1,26 @@
+{
+    "pedidosApp": {
+        "invite" : {
+            "home": {
+                "title": "Invites",
+                "createLabel": "Crear nuevo Invite",
+                "createOrEditLabel": "Crear o editar Invite",
+                "search": "Search for Invite"
+            },
+            "created": "Un nuevo Invite ha sido creado con el identificador {{ param }}",
+            "updated": "Un Invite ha sido actualizado con el identificador {{ param }}",
+            "deleted": "Un Invite ha sido eliminado con el identificador {{ param }}",
+            "delete": {
+                "question": "¿Seguro que quiere eliminar Invite {{ id }}?"
+            },
+            "detail": {
+                "title": "Invite"
+            },
+            "guestMail": "Guest Mail",
+            "guestName": "Guest Name",
+            "date": "Date",
+            "status": "Status",
+            "host": "Host"
+        }
+    }
+}

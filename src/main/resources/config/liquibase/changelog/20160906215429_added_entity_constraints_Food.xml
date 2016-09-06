@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
+    <!--
+        Added the constraints for entity Food.
+    -->
+    <changeSet id="20160906215429-2" author="jhipster">
+        
+        <addForeignKeyConstraint baseColumnNames="delicatessen_id_id"
+                                 baseTableName="food"
+                                 constraintName="fk_food_delicatessen_id_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="delicatessen"/>
+
+        <addForeignKeyConstraint baseColumnNames="foods_id"
+                                 baseTableName="food_garrison"
+                                 constraintName="fk_food_garrison_foods_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="food"/>
+        <addForeignKeyConstraint baseColumnNames="garrisons_id"
+                                 baseTableName="food_garrison"
+                                 constraintName="fk_food_garrison_garrisons_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="garrison"/>
+        
+    </changeSet>
+</databaseChangeLog>

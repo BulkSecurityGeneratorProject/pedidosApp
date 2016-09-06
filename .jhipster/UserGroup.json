@@ -46,9 +46,14 @@
             "fieldValidateRules": [
                 "required"
             ]
+        },
+        {
+            "fieldName": "picture",
+            "fieldType": "byte[]",
+            "fieldTypeBlobContent": "image"
         }
     ],
-    "changelogDate": "20160906013640",
+    "changelogDate": "20160906221444",
     "entityTableName": "user_group",
     "dto": "no",
     "pagination": "no",

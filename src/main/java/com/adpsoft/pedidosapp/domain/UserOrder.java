@@ -8,6 +8,8 @@ import java.io.Serializable;
 import java.time.ZonedDateTime;
 import java.util.Objects;
 
+import com.adpsoft.pedidosapp.domain.enumeration.OrderStatus;
+
 /**
  * A UserOrder.
  */
@@ -24,6 +26,10 @@ public class UserOrder implements Serializable {
 
     @Column(name = "date")
     private ZonedDateTime date;
+
+    @Enumerated(EnumType.STRING)
+    @Column(name = "status")
+    private OrderStatus status;
 
     @ManyToOne
     private User userId;
@@ -53,6 +59,19 @@ public class UserOrder implements Serializable {
 
     public void setDate(ZonedDateTime date) {
         this.date = date;
+    }
+
+    public OrderStatus getStatus() {
+        return status;
+    }
+
+    public UserOrder status(OrderStatus status) {
+        this.status = status;
+        return this;
+    }
+
+    public void setStatus(OrderStatus status) {
+        this.status = status;
     }
 
     public User getUserId() {
@@ -119,6 +138,7 @@ public class UserOrder implements Serializable {
         return "UserOrder{" +
             "id=" + id +
             ", date='" + date + "'" +
+            ", status='" + status + "'" +
             '}';
     }
 }

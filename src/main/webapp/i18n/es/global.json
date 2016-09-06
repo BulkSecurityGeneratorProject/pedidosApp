@@ -14,6 +14,7 @@
                 "userOrder": "User Order",
                 "groupConfiguration": "Group Configuration",
                 "day": "Day",
+                "invite": "Invite",
                 "jhipster-needle-menu-add-entry": "JHipster will add additional entities here (do not translate!)"
             },
             "account": {

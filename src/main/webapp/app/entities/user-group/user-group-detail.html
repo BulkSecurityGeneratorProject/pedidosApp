@@ -20,6 +20,15 @@
         <dd>
             <span>{{vm.userGroup.phone}}</span>
         </dd>
+        <dt><span translate="pedidosApp.userGroup.picture">Picture</span></dt>
+        <dd>
+            <div ng-if="vm.userGroup.picture">
+                <a ng-click="vm.openFile(vm.userGroup.pictureContentType, vm.userGroup.picture)">
+                    <img data-ng-src="{{'data:' + vm.userGroup.pictureContentType + ';base64,' + vm.userGroup.picture}}" style="max-width: 100%;"/>
+                </a>
+                {{vm.userGroup.pictureContentType}}, {{vm.byteSize(vm.userGroup.picture)}}
+            </div>
+        </dd>
         <dt><span translate="pedidosApp.userGroup.adminId">Admin Id</span></dt>
         <dd>
             {{vm.userGroup.adminId.id}}

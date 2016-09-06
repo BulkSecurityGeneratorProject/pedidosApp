@@ -5,13 +5,17 @@
         .module('pedidosApp')
         .controller('FoodDialogController', FoodDialogController);
 
-    FoodDialogController.$inject = ['$timeout', '$scope', '$stateParams', '$uibModalInstance', 'entity', 'Food', 'Delicatessen', 'Garrison'];
+    FoodDialogController.$inject = ['$timeout', '$scope', '$stateParams', '$uibModalInstance', 'DataUtils', 'entity', 'Food', 'Delicatessen', 'Garrison'];
 
-    function FoodDialogController ($timeout, $scope, $stateParams, $uibModalInstance, entity, Food, Delicatessen, Garrison) {
+    function FoodDialogController ($timeout, $scope, $stateParams, $uibModalInstance, DataUtils, entity, Food, Delicatessen, Garrison) {
         var vm = this;
 
         vm.food = entity;
         vm.clear = clear;
+        vm.datePickerOpenStatus = {};
+        vm.openCalendar = openCalendar;
+        vm.byteSize = DataUtils.byteSize;
+        vm.openFile = DataUtils.openFile;
         vm.save = save;
         vm.delicatessens = Delicatessen.query();
         vm.garrisons = Garrison.query();
@@ -43,6 +47,25 @@
             vm.isSaving = false;
         }
 
+        vm.datePickerOpenStatus.startDate = false;
+        vm.datePickerOpenStatus.endDate = false;
 
+        vm.setPicture = function ($file, food) {
+            if ($file && $file.$error === 'pattern') {
+                return;
+            }
+            if ($file) {
+                DataUtils.toBase64($file, function(base64Data) {
+                    $scope.$apply(function() {
+                        food.picture = base64Data;
+                        food.pictureContentType = $file.type;
+                    });
+                });
+            }
+        };
+
+        function openCalendar (date) {
+            vm.datePickerOpenStatus[date] = true;
+        }
     }
 })();

@@ -27,9 +27,25 @@
             "fieldValidateRules": [
                 "required"
             ]
+        },
+        {
+            "fieldName": "startDate",
+            "fieldType": "ZonedDateTime",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "endDate",
+            "fieldType": "ZonedDateTime"
+        },
+        {
+            "fieldName": "picture",
+            "fieldType": "byte[]",
+            "fieldTypeBlobContent": "image"
         }
     ],
-    "changelogDate": "20160823000633",
+    "changelogDate": "20160906215429",
     "entityTableName": "food",
     "dto": "no",
     "pagination": "no",

@@ -18,6 +18,9 @@
             },
             "prefix": "Prefix",
             "name": "Name",
+            "startDate": "Start Date",
+            "endDate": "End Date",
+            "picture": "Picture",
             "delicatessenId": "Delicatessen Id",
             "garrison": "Garrison"
         }

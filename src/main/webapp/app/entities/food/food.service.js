@@ -4,9 +4,9 @@
         .module('pedidosApp')
         .factory('Food', Food);
 
-    Food.$inject = ['$resource'];
+    Food.$inject = ['$resource', 'DateUtils'];
 
-    function Food ($resource) {
+    function Food ($resource, DateUtils) {
         var resourceUrl =  'api/foods/:id';
 
         return $resource(resourceUrl, {}, {
@@ -16,6 +16,8 @@
                 transformResponse: function (data) {
                     if (data) {
                         data = angular.fromJson(data);
+                        data.startDate = DateUtils.convertDateTimeFromServer(data.startDate);
+                        data.endDate = DateUtils.convertDateTimeFromServer(data.endDate);
                     }
                     return data;
                 }

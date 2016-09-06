@@ -20,6 +20,7 @@
                 <tr>
                     <th><span translate="global.field.id">ID</span></th>
                     <th><span translate="pedidosApp.userOrder.date">Date</span></th>
+                    <th><span translate="pedidosApp.userOrder.status">Status</span></th>
                     <th><span translate="pedidosApp.userOrder.userId">User Id</span></th>
                     <th><span translate="pedidosApp.userOrder.foodId">Food Id</span></th>
                     <th><span translate="pedidosApp.userOrder.garrisonId">Garrison Id</span></th>
@@ -30,6 +31,7 @@
                 <tr ng-repeat="userOrder in vm.userOrders track by userOrder.id">
                     <td><a ui-sref="user-order-detail({id:userOrder.id})">{{userOrder.id}}</a></td>
                     <td>{{userOrder.date | date:'medium'}}</td>
+                    <td translate="{{'pedidosApp.OrderStatus.' + userOrder.status}}">{{userOrder.status}}</td>
                     <td>
                         {{userOrder.userId.id}}
                     </td>

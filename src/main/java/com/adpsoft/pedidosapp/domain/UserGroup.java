@@ -38,6 +38,13 @@ public class UserGroup implements Serializable {
     @Column(name = "phone", nullable = false)
     private String phone;
 
+    @Lob
+    @Column(name = "picture")
+    private byte[] picture;
+
+    @Column(name = "picture_content_type")
+    private String pictureContentType;
+
     @OneToOne
     @JoinColumn(unique = true)
     private User adminId;
@@ -106,6 +113,32 @@ public class UserGroup implements Serializable {
         this.phone = phone;
     }
 
+    public byte[] getPicture() {
+        return picture;
+    }
+
+    public UserGroup picture(byte[] picture) {
+        this.picture = picture;
+        return this;
+    }
+
+    public void setPicture(byte[] picture) {
+        this.picture = picture;
+    }
+
+    public String getPictureContentType() {
+        return pictureContentType;
+    }
+
+    public UserGroup pictureContentType(String pictureContentType) {
+        this.pictureContentType = pictureContentType;
+        return this;
+    }
+
+    public void setPictureContentType(String pictureContentType) {
+        this.pictureContentType = pictureContentType;
+    }
+
     public User getAdminId() {
         return adminId;
     }
@@ -160,6 +193,8 @@ public class UserGroup implements Serializable {
             ", email='" + email + "'" +
             ", address='" + address + "'" +
             ", phone='" + phone + "'" +
+            ", picture='" + picture + "'" +
+            ", pictureContentType='" + pictureContentType + "'" +
             '}';
     }
 }

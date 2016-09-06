@@ -106,6 +106,10 @@
                             return {
                                 prefix: null,
                                 name: null,
+                                startDate: null,
+                                endDate: null,
+                                picture: null,
+                                pictureContentType: null,
                                 id: null
                             };
                         }

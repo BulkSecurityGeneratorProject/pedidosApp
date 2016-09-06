@@ -1,0 +1,10 @@
+{
+    "pedidosApp": {
+        "InviteStatus" : {
+            "null": "",
+            "PENDING": "PENDING",
+            "SENT": "SENT",
+            "ACCEPTED": "ACCEPTED"
+        }
+    }
+}

@@ -26,6 +26,7 @@
             resolve: {
                 translatePartialLoader: ['$translate', '$translatePartialLoader', function ($translate, $translatePartialLoader) {
                     $translatePartialLoader.addPart('userOrder');
+                    $translatePartialLoader.addPart('orderStatus');
                     $translatePartialLoader.addPart('global');
                     return $translate.refresh();
                 }]
@@ -48,6 +49,7 @@
             resolve: {
                 translatePartialLoader: ['$translate', '$translatePartialLoader', function ($translate, $translatePartialLoader) {
                     $translatePartialLoader.addPart('userOrder');
+                    $translatePartialLoader.addPart('orderStatus');
                     return $translate.refresh();
                 }],
                 entity: ['$stateParams', 'UserOrder', function($stateParams, UserOrder) {
@@ -105,6 +107,7 @@
                         entity: function () {
                             return {
                                 date: null,
+                                status: null,
                                 id: null
                             };
                         }

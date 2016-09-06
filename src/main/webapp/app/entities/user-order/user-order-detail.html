@@ -8,6 +8,10 @@
         <dd>
             <span>{{vm.userOrder.date | date:'medium'}}</span>
         </dd>
+        <dt><span translate="pedidosApp.userOrder.status">Status</span></dt>
+        <dd>
+            <span translate="{{'pedidosApp.OrderStatus.' + vm.userOrder.status}}">{{vm.userOrder.status}}</span>
+        </dd>
         <dt><span translate="pedidosApp.userOrder.userId">User Id</span></dt>
         <dd>
             {{vm.userOrder.userId.id}}

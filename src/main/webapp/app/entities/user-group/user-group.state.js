@@ -108,6 +108,8 @@
                                 email: null,
                                 address: null,
                                 phone: null,
+                                picture: null,
+                                pictureContentType: null,
                                 id: null
                             };
                         }

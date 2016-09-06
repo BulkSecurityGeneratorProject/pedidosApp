@@ -67,7 +67,7 @@ class UserGroupGatlingTest extends Simulation {
             .exec(http("Create new userGroup")
             .post("/api/user-groups")
             .headers(headers_http_authenticated)
-            .body(StringBody("""{"id":null, "name":"SAMPLE_TEXT", "email":"SAMPLE_TEXT", "address":"SAMPLE_TEXT", "phone":"SAMPLE_TEXT"}""")).asJSON
+            .body(StringBody("""{"id":null, "name":"SAMPLE_TEXT", "email":"SAMPLE_TEXT", "address":"SAMPLE_TEXT", "phone":"SAMPLE_TEXT", "picture":null}""")).asJSON
             .check(status.is(201))
             .check(headerRegex("Location", "(.*)").saveAs("new_userGroup_url"))).exitHereIfFailed
             .pause(10)

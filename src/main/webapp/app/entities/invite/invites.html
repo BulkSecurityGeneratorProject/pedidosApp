@@ -1,0 +1,66 @@
+<div>
+    <h2 translate="pedidosApp.invite.home.title">Invites</h2>
+    <jhi-alert></jhi-alert>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-xs-4 no-padding-left">
+                <button class="btn btn-primary" ui-sref="invite.new" >
+                    <span class="glyphicon glyphicon-plus"></span>
+                    <span  translate="pedidosApp.invite.home.createLabel">
+                        Create new Invite
+                    </span>
+                </button>
+            </div>
+        </div>
+    </div>
+    <br/>
+    <div class="table-responsive">
+        <table class="jh-table table table-striped">
+            <thead>
+                <tr>
+                    <th><span translate="global.field.id">ID</span></th>
+                    <th><span translate="pedidosApp.invite.guestMail">Guest Mail</span></th>
+                    <th><span translate="pedidosApp.invite.guestName">Guest Name</span></th>
+                    <th><span translate="pedidosApp.invite.date">Date</span></th>
+                    <th><span translate="pedidosApp.invite.status">Status</span></th>
+                    <th><span translate="pedidosApp.invite.host">Host</span></th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="invite in vm.invites track by invite.id">
+                    <td><a ui-sref="invite-detail({id:invite.id})">{{invite.id}}</a></td>
+                    <td>{{invite.guestMail}}</td>
+                    <td>{{invite.guestName}}</td>
+                    <td>{{invite.date | date:'medium'}}</td>
+                    <td translate="{{'pedidosApp.InviteStatus.' + invite.status}}">{{invite.status}}</td>
+                    <td>
+                        {{invite.host.id}}
+                    </td>
+                    <td class="text-right">
+                        <div class="btn-group flex-btn-group-container">
+                            <button type="submit"
+                                    ui-sref="invite-detail({id:invite.id})"
+                                    class="btn btn-info btn-sm">
+                                <span class="glyphicon glyphicon-eye-open"></span>
+                                <span class="hidden-xs hidden-sm" translate="entity.action.view"></span>
+                            </button>
+                            <button type="submit"
+                                    ui-sref="invite.edit({id:invite.id})"
+                                    class="btn btn-primary btn-sm">
+                                <span class="glyphicon glyphicon-pencil"></span>
+                                <span class="hidden-xs hidden-sm" translate="entity.action.edit"></span>
+                            </button>
+                            <button type="submit"
+                                    ui-sref="invite.delete({id:invite.id})"
+                                    class="btn btn-danger btn-sm">
+                                <span class="glyphicon glyphicon-remove-circle"></span>
+                                <span class="hidden-xs hidden-sm" translate="entity.action.delete"></span>
+                            </button>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
