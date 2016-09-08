@@ -41,10 +41,17 @@ spring:
             hibernate.generate_statistics: true
             hibernate.cache.region.factory_class: org.hibernate.cache.ehcache.SingletonEhCacheRegionFactory
     mail:
-        host: localhost
-        port: 25
-        username:
-        password:
+        host: smtp.gmail.com
+        port: 587
+        username: adpsoft.pedidosapp@gmail.com
+        password: adpsoft2k11
+        properties:
+          mail:
+            smtp:
+              starttls: 
+                enable: true
+                required: true
+                auth: true
     messages:
         cache-seconds: 1
     thymeleaf:
