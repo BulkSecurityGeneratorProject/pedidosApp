@@ -1,6 +1,7 @@
 package com.adpsoft.pedidosapp.service;
 
 import com.adpsoft.pedidosapp.config.JHipsterProperties;
+import com.adpsoft.pedidosapp.domain.Invite;
 import com.adpsoft.pedidosapp.domain.User;
 
 import org.apache.commons.lang.CharEncoding;
@@ -31,6 +32,7 @@ public class MailService {
     private final Logger log = LoggerFactory.getLogger(MailService.class);
 
     private static final String USER = "user";
+    private static final String GUEST = "guest";
     private static final String BASE_URL = "baseUrl";
 
     @Inject
@@ -100,4 +102,16 @@ public class MailService {
         String subject = messageSource.getMessage("email.reset.title", null, locale);
         sendEmail(user.getEmail(), subject, content, false, true);
     }
+
+    @Async
+	public void sendInviteEmail(Invite invite, String baseUrl) {
+    	log.debug("Sending invitation e-mail to '{}'", invite.getGuestMail());
+        Locale locale = Locale.forLanguageTag(invite.getLangKey());
+        Context context = new Context();
+        context.setVariable(GUEST, invite);
+        context.setVariable(BASE_URL, baseUrl);
+        String content = templateEngine.process("invitationEmail", context);
+        String subject = messageSource.getMessage("email.invitation.title", null, locale);
+        sendEmail(invite.getGuestMail(), subject, content, false, true);
+	}
 }

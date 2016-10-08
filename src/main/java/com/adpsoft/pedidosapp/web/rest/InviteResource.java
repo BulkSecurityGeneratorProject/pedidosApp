@@ -2,9 +2,13 @@ package com.adpsoft.pedidosapp.web.rest;
 
 import com.codahale.metrics.annotation.Timed;
 import com.adpsoft.pedidosapp.domain.Invite;
-
+import com.adpsoft.pedidosapp.domain.User;
 import com.adpsoft.pedidosapp.repository.InviteRepository;
+import com.adpsoft.pedidosapp.repository.UserRepository;
+import com.adpsoft.pedidosapp.service.MailService;
 import com.adpsoft.pedidosapp.web.rest.util.HeaderUtil;
+import com.adpsoft.pedidosapp.web.rest.vm.KeyAndPasswordVM;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpHeaders;
@@ -14,6 +18,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.inject.Inject;
+import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 import java.net.URI;
 import java.net.URISyntaxException;
@@ -31,6 +36,10 @@ public class InviteResource {
         
     @Inject
     private InviteRepository inviteRepository;
+    @Inject
+    private UserRepository userRepository;
+    @Inject
+    private MailService mailService;
 
     /**
      * POST  /invites : Create a new invite.
@@ -67,7 +76,7 @@ public class InviteResource {
         method = RequestMethod.PUT,
         produces = MediaType.APPLICATION_JSON_VALUE)
     @Timed
-    public ResponseEntity<Invite> updateInvite(@Valid @RequestBody Invite invite) throws URISyntaxException {
+    public ResponseEntity<?> updateInvite(@Valid @RequestBody Invite invite, HttpServletRequest request) throws URISyntaxException {
         log.debug("REST request to update Invite : {}", invite);
         if (invite.getId() == null) {
             return createInvite(invite);
@@ -76,6 +85,38 @@ public class InviteResource {
         return ResponseEntity.ok()
             .headers(HeaderUtil.createEntityUpdateAlert("invite", invite.getId().toString()))
             .body(result);
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        HttpHeaders textPlainHeaders = new HttpHeaders();
+        textPlainHeaders.setContentType(MediaType.TEXT_PLAIN);
+
+        return userRepository.findOneByEmail(invite.getGuestMail())
+                .map(invite2 -> new ResponseEntity<>("e-mail address already in use", textPlainHeaders, HttpStatus.BAD_REQUEST))
+                .orElseGet(() -> {
+                	Invite invite2 = inviteRepository.save(invite);;
+                    
+                    String baseUrl = request.getScheme() + // "http"
+                    "://" +                                // "://"
+                    request.getServerName() +              // "myhost"
+                    ":" +                                  // ":"
+                    request.getServerPort() +              // "80"
+                    request.getContextPath();              // "/myContextPath" or "" if deployed in root context
+
+                    mailService.sendInviteEmail(invite2, baseUrl);
+                    return new ResponseEntity<>(HttpStatus.CREATED);
+                });
+                
+        
+        
+        
+        
     }
 
     /**
@@ -129,4 +170,24 @@ public class InviteResource {
         return ResponseEntity.ok().headers(HeaderUtil.createEntityDeletionAlert("invite", id.toString())).build();
     }
 
+    
+    /**
+     * POST   /invites/finish : Finish to reset the password of the user
+     *
+     * @param keyAndPassword the generated key and the new password
+     * @return the ResponseEntity with status 200 (OK) if the password has been reset,
+     * or status 400 (Bad Request) or 500 (Internal Server Error) if the password could not be reset
+     */
+    @RequestMapping(value = "/invites/finish",
+        method = RequestMethod.POST,
+        produces = MediaType.TEXT_PLAIN_VALUE)
+    @Timed
+    public ResponseEntity<String> finishPasswordReset(@RequestBody KeyAndPasswordVM keyAndPassword) {
+        if (!checkPasswordLength(keyAndPassword.getNewPassword())) {
+            return new ResponseEntity<>("Incorrect password", HttpStatus.BAD_REQUEST);
+        }
+        return userService.completePasswordReset(keyAndPassword.getNewPassword(), keyAndPassword.getKey())
+              .map(user -> new ResponseEntity<String>(HttpStatus.OK))
+              .orElse(new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR));
+    }
 }
